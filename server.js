@@ -7,8 +7,6 @@ const bodyParser = require('body-parser');
 //require router
 const router = require('./routes/router');
 
-//require db models
-const db = require('./models');
 //intialize PORT constant
 const PORT = 3000;
 //initialize express
@@ -24,7 +22,7 @@ app.set('view engine', 'handlebars');
 //configure mongoose
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 //use the router
 app.use('/', router);
 //start the app
