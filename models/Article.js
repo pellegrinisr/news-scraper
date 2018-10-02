@@ -17,7 +17,7 @@ const ArticleSchema = new Schema({
   },
   byline: {
     type: String,
-    required: true
+    required: false
   },
   comments: [{
     type: Schema.Types.ObjectId,

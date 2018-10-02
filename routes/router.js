@@ -7,9 +7,9 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', function(req, res) {
+  const intitialArray = [];
   axios.get("https://www.nytimes.com/section/politics/").then(function(response) {
     let $ = cheerio.load(response.data);
-    // console.log($);
     $("article").each(function(i, element) {
       let link = $(element).children('div').children('a').attr('href');
       let headline = $(element).children('div').children('a').children('div').children('h2').text().trim();
@@ -27,6 +27,9 @@ router.get('/', function(req, res) {
       if (!byline) {
         byline = $(element).children('div').children('p.byline').text().trim();
       }
+      if (!byline) {
+        byline = '';
+      }
       console.log('link ', link);
       console.log('headline ', headline);
       console.log('summary ', summary);
@@ -37,9 +40,24 @@ router.get('/', function(req, res) {
         summary: summary,
         byline: byline
       };
-    })
+      db.Article.find({headline: newArticle.headline}, function(error, docs) {
+        if (error) {
+          return res.json(error);
+        }else if (docs.length === 0) {
+          console.log(docs.length === 0);
+          db.Article.create(newArticle)
+            .then(function(dbArticle) {
+              console.log(dbArticle);
+            })
+            .catch(function(error) {
+              return res.json(error);
+            });
+        } 
+        console.log(docs.length);
+      });
+    });
     res.render('home', {test: {title: 'Hello', author: 'Stephen'}});
-  })
+  });
 });
 
 module.exports = router;
