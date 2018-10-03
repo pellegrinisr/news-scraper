@@ -11,15 +11,17 @@
         <div class="comments">
             <h3>Comments</h3>
             {{#each comments}}
-                <p>{{name}}</p>
-                <p>{{body}}</p>
-                <p>{{date}}</p>
+                <div class="single-comment">
+                    <p>{{name}}</p>
+                    <p>{{body}}</p>
+                    <p>{{date}}</p>
+                </div>
             {{/each}}
             <form id={{_id}}>
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name</label><span class="pl-3 error" id="name-error">Name is required.</span>
                     <input type="text" class="form-control name">
-                    <label for="comment">Comment</label> 
+                    <label for="comment">Comment</label> <span class="pl-3 error" id="body-error">Comment body cannot be blank.</span>
                     <textarea class="form-control comment"></textarea>
                 </div>
                 <button type="submit" class="btn btn-secondary">Post</button>

@@ -21,17 +21,10 @@ const ArticleSchema = new Schema({
   },
   comments: [{
     name: {
-      type: String,
-      default: 'Anonymous'
+      type: String
     },
     body: {
       type: String,
-      validate: [
-        function(input) {
-          return input.length >= 1;
-        },
-        'Comment cannot be blank.'
-      ]
     },
     date: {
       type: Date,
