@@ -1,17 +1,17 @@
 $(document).ready(function() {
   $('form').on('submit', function(event) {
     event.preventDefault();
-    $(this).children('div').children('#name-error').hide();
-    $(this).children('div').find('#body-error').hide();
+    $(this).children('div').children('.name-error').hide();
+    $(this).children('div').find('.body-error').hide();
     let isValid = true;
     const name = $(this).children('div').children('input.name').val().trim();
     const body = $(this).children('div').children('textarea.comment').val().trim();
     if (name === '') {
-      $(this).children('div').children('#name-error').show();
+      $(this).children('div').children('.name-error').show();
       isValid = false;
     }
     if (body === '') {
-      $(this).children('div').find('#body-error').show();
+      $(this).children('div').find('.body-error').show();
       isValid = false;
     }
     if (isValid) {
@@ -28,5 +28,9 @@ $(document).ready(function() {
         console.log(error);
       });
     }
+  });
+
+  $('#refresh').on('click', function() {
+    window.location.href = '/';
   });
 }); 
