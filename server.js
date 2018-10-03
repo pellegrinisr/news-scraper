@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-
 //require router
 const router = require('./routes/router');
 //set up the port

@@ -1,3 +1,29 @@
 .body-error, .name-error {
     display: none;
 }
+.article-section {
+    background-color: #9fd9e0;
+}
+.comments {
+    background-color: #d8f0f3;
+    border: 1px solid #19484d;
+}
+h1 {
+    color: #9fd9e0;
+}
+#refresh, .submit {
+    background-color: #3eb4c1;
+    color: #f8f9fa;
+}
+#refresh:hover {
+    background-color:#007bff;
+}
+body {
+    background-color: #f8f9fa;
+}
+h3, h4, a {
+    color: #19484d;
+}
+.single-comment {
+    border: 1px solid #343a40;
+}

@@ -6,6 +6,10 @@ const router = express.Router();
 //require db models
 const db = require('../models');
 
+//this is the primary root get route
+//this route handles axios calls to the NYT politics section
+//uses cheerio to scrape the results and pull info about each article
+//also resposible for inserting new articles to the database
 router.get('/', function(req, res) {
   const articleArray = [];
   axios.get("https://www.nytimes.com/section/politics/").then(function(response) {
@@ -36,10 +40,6 @@ router.get('/', function(req, res) {
         if (!byline) {
           byline = '';
         }
-        // console.log('link ', link);
-        // console.log('headline ', headline);
-        // console.log('summary ', summary);
-        // console.log('byline ', byline);
 
         //create the object for submission to the database
         const newArticle = {
@@ -48,6 +48,7 @@ router.get('/', function(req, res) {
           summary: summary,
           byline: byline
         };
+        //check if article with matching headline already exists in the database
         db.Article.find({headline: newArticle.headline}, function(error, docs) {
           if (error) {
             return res.json(error);
@@ -68,6 +69,8 @@ router.get('/', function(req, res) {
   });
 });
 
+//this route renders the articles to the page
+//using home.handlebars template
 router.get('/articles', function(req, res) {
   db.Article.find({}, function(error, data) {
     if (error) {
@@ -79,6 +82,8 @@ router.get('/articles', function(req, res) {
   });
 });
 
+//update an article document
+//adds new comments
 router.put('/articles/:id', function(req, res) {
   console.log(req.body);
   db.Article.updateOne(
@@ -94,7 +99,8 @@ router.put('/articles/:id', function(req, res) {
       if (error) {
         res.sendStatus(404);
       } else {
-        res.json(data);
+        console.log('back to the client');
+        res.sendStatus(200);
       }
   });
 });

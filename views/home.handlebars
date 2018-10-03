@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron bg-dark mt-1">
         <div class="row">
             <div class="col-lg-12">
                 <h1>Get the Latest from New York Times Politics</h1>
@@ -7,45 +7,43 @@
         </div>
         <div class="row">
             <div class="col-lg-6 offset-lg-9">
-                <button type="button" class="btn btn-primary mt-2" id="refresh">Refresh articles</button>
+                <button type="button" class="btn btn-secondary mt-2" id="refresh">Refresh articles</button>
             </div>
         </div>
     </div>
     {{#each articles}}
-        <div class="article-section border border-secondary my-4 p-2">
+        <div class="article-section border border-secondary rounded my-4 p-2">
             <h2><a href={{link}} target="_blank">{{headline}}</a></h2>
-            <p>{{summary}}</p>     
-            <p>{{byline}}</p>
+            <p class="text-dark">{{summary}}</p>     
+            <p class="text-dark">{{byline}}</p>
             <p><a href={{link}} target="_blank">{{link}}</a></p>
        
             <div class="row">
                 <div class="col-lg-8 offset-2">
-                    <div class="comments border border-primary">
+                    <div class="comments rounded">
                         <h3 class="text-center">Comments</h3>
                         {{#each comments}}
-                            <div class="single-comment border border-secondary bg-info m-2">
-                                <p>{{name}}</p>
-                                <p>{{body}}</p>
-                                <p>{{date}}</p>
+                            <div class="single-comment rounded bg-light m-2">
+                                <p class="text-dark">{{name}}</p>
+                                <p class="text-dark">{{body}}</p>
+                                <p class="text-dark">{{date}}</p>
                             </div>
                         {{/each}}
                         <h4 class="text-center">Post Comment</h4>
-                        <form class="px-2" id={{_id}}>
-                            <div class="form-group row">
+                        <form class="px-2 m-2" id={{_id}}>
+                            <div class="form-group row row-top">
                                 <div class="col-lg-9">
                                     <label for="name">Name</label><span class="pl-3 text-danger name-error">Name is required.</span>
                                     <input type="text" class="form-control name">
                                 </div>
                             </div>
-                            <div class="from-group">
-                                <div class="form-row">
-                                    <div class="col-lg-9">
-                                        <label for="comment">Comment</label> <span class="pl-3 text-danger body-error">Comment body cannot be blank.</span>
-                                        <textarea class="form-control comment"></textarea>
-                                    </div> 
+                            <div class="from-group row row-bottom">
+                                <div class="col-lg-9">
+                                    <label for="comment">Comment</label> <span class="pl-3 text-danger body-error">Comment body cannot be blank.</span>
+                                    <textarea class="form-control comment"></textarea>
                                 </div>      
                             </div>
-                            <button type="submit" class="btn btn-secondary my-2 offset-8">Post</button>
+                            <button type="submit" class="submit btn my-2 offset-8">Post</button>
                         </form>
                     </div>
                 </div>
