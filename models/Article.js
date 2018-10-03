@@ -20,8 +20,23 @@ const ArticleSchema = new Schema({
     required: false
   },
   comments: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Comment'
+    name: {
+      type: String,
+      default: 'Anonymous'
+    },
+    body: {
+      type: String,
+      validate: [
+        function(input) {
+          return input.length >= 1;
+        },
+        'Comment cannot be blank.'
+      ]
+    },
+    date: {
+      type: Date,
+      default: Date.now
+    }
   }]
 });
 

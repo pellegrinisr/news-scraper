@@ -40,7 +40,7 @@ router.get('/', function(req, res) {
         // console.log('headline ', headline);
         // console.log('summary ', summary);
         // console.log('byline ', byline);
-        
+
         //create the object for submission to the database
         const newArticle = {
           link: link,
@@ -55,7 +55,7 @@ router.get('/', function(req, res) {
             db.Article.create(newArticle)
               .then(function(dbArticle) {
                 articleArray.push(newArticle);
-                console.log(dbArticle);
+                // console.log(dbArticle);
               })
               .catch(function(error) {
                 return res.json(error);
@@ -73,9 +73,29 @@ router.get('/articles', function(req, res) {
     if (error) {
       res.sendStatus(404);
     } else {
-      console.log(data);
+      // console.log(data);
       res.render('home', {articles: data});
     }
+  });
+});
+
+router.put('/articles/:id', function(req, res) {
+  console.log(req.body);
+  db.Article.updateOne(
+    {
+      _id: req.params.id
+    },
+    { $push: {'comments' : {
+        name: req.body.name,
+        body: req.body.body,
+      }
+    }}, 
+    function(error, data) {
+      if (error) {
+        res.sendStatus(404);
+      } else {
+        res.json(data);
+      }
   });
 });
 

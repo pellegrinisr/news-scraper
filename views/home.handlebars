@@ -11,18 +11,18 @@
         <div class="comments">
             <h3>Comments</h3>
             {{#each comments}}
-                {{!-- display existing comments here --}}
+                <p>{{name}}</p>
+                <p>{{body}}</p>
+                <p>{{date}}</p>
             {{/each}}
-            <form>
+            <form id={{_id}}>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-                <div class="form-group">
+                    <input type="text" class="form-control name">
                     <label for="comment">Comment</label> 
-                    <textarea class="form-control" id="comment" name="comment"></textarea>
+                    <textarea class="form-control comment"></textarea>
                 </div>
-                <button class="btn btn-secondary">Post</button>
+                <button type="submit" class="btn btn-secondary">Post</button>
             </form>
         </div>
     {{/each}}
