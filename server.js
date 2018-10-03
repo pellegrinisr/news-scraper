@@ -6,9 +6,9 @@ const bodyParser = require('body-parser');
 
 //require router
 const router = require('./routes/router');
+//set up the port
+const port = process.env.PORT || 3000
 
-//intialize PORT constant
-const PORT = 3000;
 //initialize express
 const app = express();
 //configure middleware
@@ -26,6 +26,6 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 //use the router
 app.use('/', router);
 //start the app
-app.listen(PORT, function() {
-    console.log('App running on port ' + PORT);
+app.listen(port, function() {
+    console.log('App running on port ' + port);
 });
