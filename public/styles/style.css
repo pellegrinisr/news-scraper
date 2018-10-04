@@ -3,6 +3,13 @@
 }
 .article-section {
     background-color: #9fd9e0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
 }
 .comments {
     background-color: #d8f0f3;
@@ -14,6 +21,9 @@ h1 {
 #refresh, .submit {
     background-color: #3eb4c1;
     color: #f8f9fa;
+}
+.submit:hover {
+    background-color:#007bff;
 }
 #refresh:hover {
     background-color:#007bff;
