@@ -15,6 +15,7 @@ router.get('/', function(req, res) {
   axios.get("https://www.nytimes.com/section/politics/").then(function(response) {
     const $ = cheerio.load(response.data);
     $("article").each(function(i, element) {
+      // console.log(element);
       //check if articles are from "hidden" section
       if ($(element).parent('li').parent('ol').parent('div').parent('div').parent("section").hasClass('hidden')) {
         return;
@@ -40,7 +41,7 @@ router.get('/', function(req, res) {
         if (!byline) {
           byline = '';
         }
-
+        // console.log(headline);
         //create the object for submission to the database
         const newArticle = {
           link: link,
@@ -77,7 +78,7 @@ router.get('/articles', function(req, res) {
       res.sendStatus(404);
     } else {
       // console.log(data);
-      res.render('home', {articles: data});
+      res.render('home', {articles: data.reverse()});
     }
   });
 });
